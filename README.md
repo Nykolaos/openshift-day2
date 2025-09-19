@@ -7,10 +7,10 @@ The repos is divided in 3 parts:
 - cluster-overlay
 - namespace-overlay
 
-### base
+### Base
 The base folder hosts the template and base resource that generally are used in day2 operations, such as resources to install operators, create machine sets and machine configs.
 
-### overlays
+### Overlays
 These 2 folders serves as example of how the repos can be used to manage configuration with GitOps and Kustomize.
 namespace-overaly contains namespace-wide resources such as machine sets, while cluster-overlay contains cluster-wide resource such as machine configs.
 
