@@ -1,0 +1,12 @@
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  name: ingress-canary
+  namespace: openshift-ingress-canary
+  labels:
+    ingress.openshift.io/canary: canary_controller
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec: {
+  # COPY YAML FROM THE CLUSTER
+} 

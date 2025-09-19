@@ -1,0 +1,19 @@
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  name: ingress-canary
+  namespace: openshift-ingress-canary
+spec:
+  template:
+    spec:
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/infra
+          value: reserved
+        - effect: NoExecute
+          key: node-role.kubernetes.io/infra
+          value: reserved
+        - key: node-role.kubernetes.io/storage
+          operator: Exists
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/builder

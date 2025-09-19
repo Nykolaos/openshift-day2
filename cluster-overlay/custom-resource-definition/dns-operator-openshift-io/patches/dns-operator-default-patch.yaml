@@ -1,0 +1,21 @@
+apiVersion: operator.openshift.io/v1
+kind: DNS
+metadata:
+  finalizers:
+    - dns.operator.openshift.io/dns-controller
+  name: default
+spec:
+  nodePlacement:
+    tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      - key: node-role.kubernetes.io/storage
+        operator: Exists
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/builder
