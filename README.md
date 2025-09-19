@@ -1,7 +1,7 @@
 # openshift-day2
-This repo serves as a template to managed day2 operations with the GitOps approach. Once cloned you must change it and edit it to align the file with your desired configurations.
+This repo serves as a template to managed OpenShift day2 operations with the GitOps and Kustomize. Once cloned you must change it and edit it to align the files with your desired configurations.
 
-## structure
+## Structure
 The repos is divided in 3 parts:
 - base
 - cluster-overlay
