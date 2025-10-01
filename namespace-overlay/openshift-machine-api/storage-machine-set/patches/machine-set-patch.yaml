@@ -14,8 +14,8 @@ spec:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
-        machine.openshift.io/cluster-api-machine-role: infra
-        machine.openshift.io/cluster-api-machine-type: infra
+        machine.openshift.io/cluster-api-machine-role: storage
+        machine.openshift.io/cluster-api-machine-type: storage
         machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-storage-0
     spec:
       lifecycleHooks: {}
