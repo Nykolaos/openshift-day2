@@ -1,0 +1,37 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: ocp-prod-x8h9t-compute-0
+  labels:
+    machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+      machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-compute-0
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+        machine.openshift.io/cluster-api-machine-role: infra
+        machine.openshift.io/cluster-api-machine-type: infra
+        machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-compute-0
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          diskGiB: 120
+          memoryMiB: 49152
+          numCPUs: 8
+          network:
+            devices:
+              - networkName: vlan600
+          workspace:
+            datacenter: DC0
+            datastore: /DC0/datastore/DS0
+            folder: /DC0/vm/ocp-prod
+            resourcePool: /DC0/host/OCP-PROD/Resources
+            server: vcenter.datacenter.it
+          template: ocp-prod-x8h9t-rhcos-generated-region-generated-zone
