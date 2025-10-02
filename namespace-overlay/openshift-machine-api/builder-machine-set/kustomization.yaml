@@ -4,10 +4,23 @@ kind: Kustomization
 resources:
   - ../../../base/machine-set
 
+nameSuffix: -builder-0
+
+replacements:
+- source:
+    kind: MachineSet
+    name: ocp-prod-x8h9t
+    fieldPath: metadata.name
+  targets:
+  - select:
+      kind: MachineSet
+      name: ocp-prod-x8h9t
+    fieldPaths:
+    - spec.selector.matchLabels.machine\.openshift\.io/cluster-api-machineset
+    - spec.template.metadata.labels.machine\.openshift\.io/cluster-api-machineset
+
 patches:
   - path: patches/machine-set-patch.yaml
     target:
       kind: MachineSet
-      name: base
-    options:
-      allowNameChange: true
+      name: ocp-prod-x8h9t
