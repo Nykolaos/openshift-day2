@@ -1,25 +1,15 @@
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
-  name: ocp-prod-x8h9t-builder-0
-  labels:
-    machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+  name: machine-set-patch
 spec:
   replicas: 2
-  selector:
-    matchLabels:
-      machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
-      machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-builder-0
   template:
     metadata:
       labels:
-        machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
         machine.openshift.io/cluster-api-machine-role: builder
         machine.openshift.io/cluster-api-machine-type: builder
-        machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-builder-0
     spec:
-      lifecycleHooks: {}
-      metadata: {}
       providerSpec:
         value:
           diskGiB: 120
@@ -34,7 +24,6 @@ spec:
             folder: /DC0/vm/ocp-prod
             resourcePool: /DC0/host/OCP-PROD/Resources
             server: vcenter.datacenter.it
-          template: ocp-prod-x8h9t-rhcos-generated-region-generated-zone
       taints:
         - effect: NoSchedule
           key: node-role.kubernetes.io/builder
