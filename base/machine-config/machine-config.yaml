@@ -3,7 +3,5 @@ kind: MachineConfig
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: Delete=false
-  labels:
-    machineconfiguration.openshift.io/role: node-role
   name: base
 spec: {}

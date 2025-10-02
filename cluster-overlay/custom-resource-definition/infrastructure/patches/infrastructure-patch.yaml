@@ -1,0 +1,25 @@
+apiVersion: config.openshift.io/v1
+kind: Infrastructure
+metadata:
+  name: cluster
+spec:
+  platformSpec:
+    vsphere:
+      failureDomains:
+      - name: <Failure-Domain>
+        region: <Region>
+        server: <vSphere-Hostname>
+        topology:
+          computeCluster: /<vSphere-Datacenter>/host/<vSphere-Cluster>
+          datacenter: <vSphere-Datacenter>
+          datastore: /<vSphere-Datacenter>/datastore/<vSphere-Datastore>
+          networks:
+          - <vSphere-Net>
+          resourcePool: /<vSphere-Datacenter>/host/<vSphere-Cluster>//Resources
+          folder: /<vSphere-Datacenter>/vm/<Folder>
+        zone: <Zone>
+      vcenters:
+        - datacenters:
+            - <vSphere-Datacenter>
+          port: 443
+          server: <vSphere-Hostname>

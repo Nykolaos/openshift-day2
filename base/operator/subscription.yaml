@@ -5,7 +5,5 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: Delete=false
 spec:
-  channel: stable
-  name: base
   source: redhat-operators
   sourceNamespace: openshift-marketplace
