@@ -4,3 +4,4 @@ metadata:
   name: openshift-gitops-operator
   labels:
     name: openshift-gitops-operator
+    openshift.io/cluster-monitoring: "true"
