@@ -1,0 +1,4 @@
+apiVersion: v2
+name: OpenShiftVirtualization
+version: 1.0
+description: Install & Configure OpenShift Virtualization Operator

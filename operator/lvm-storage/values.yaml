@@ -1,0 +1,13 @@
+namespace: openshift-storage
+labels: 
+  openshift.io/cluster-monitoring: "true"
+  pod-security.kubernetes.io/enforce: privileged
+  pod-security.kubernetes.io/audit: privileged
+  pod-security.kubernetes.io/warn: privileged
+operatorGroup: openshift-storage-operatorgroup
+operatorName: lvms-operator
+subscriptionName: lvms
+channel: stable-4.18
+approval: Manual
+source: redhat-operators
+sourceNamespace: openshift-marketplace

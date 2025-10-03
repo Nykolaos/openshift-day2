@@ -1,0 +1,11 @@
+namespace: openshift-gitops-operator
+labels: 
+  openshift.io/cluster-monitoring: "true"
+operatorGroup: openshift-gitops-operator
+operatorName: openshift-gitops-operator
+subscriptionName: openshift-gitops-operator
+channel: latest
+approval: Manual
+source: redhat-operators
+sourceNamespace: openshift-marketplace
+upgradeStrategy: Default

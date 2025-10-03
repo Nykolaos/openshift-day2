@@ -1,0 +1,4 @@
+apiVersion: v2
+name: LVMStorage
+version: 1.0
+description: Install & Configure LVM Storage Operator

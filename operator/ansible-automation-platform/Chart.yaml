@@ -1,0 +1,4 @@
+apiVersion: v2
+name: AnsibleAutomationPlatform
+version: 1.0
+description: Install & Configure Ansible Automation Platform Operator

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: OpenShiftGitOps
+version: 1.0
+description: Install & Configure OpenShift GitOps Operator

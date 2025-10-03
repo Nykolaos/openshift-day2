@@ -1,0 +1,11 @@
+namespace: openshift-cnv
+labels: 
+  openshift.io/cluster-monitoring: "true"
+operatorGroup: kubevirt-hyperconverged-group
+operatorName: kubevirt-hyperconverged
+subscriptionName: hco-operator-hub
+channel: stable
+approval: Manual
+source: redhat-operators
+sourceNamespace: openshift-marketplace
+startingCSV: kubevirt-hyperconverged-operator.v4.19.6

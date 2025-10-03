@@ -1,0 +1,10 @@
+namespace: openshift-nmstate
+labels: 
+  openshift.io/cluster-monitoring: "true"
+operatorGroup: openshift-nmstate
+operatorName: kubernetes-nmstate-operator
+subscriptionName: kubernetes-nmstate-operator
+channel: stable
+approval: Manual
+source: redhat-operators
+sourceNamespace: openshift-marketplace

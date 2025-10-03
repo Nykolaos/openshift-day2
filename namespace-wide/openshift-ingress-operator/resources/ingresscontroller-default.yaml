@@ -1,0 +1,7 @@
+apiVersion: operator.openshift.io/v1
+kind: IngressController
+metadata:
+  name: default
+spec: {}
+
+# COPY YAML FROM THE CLUSTER

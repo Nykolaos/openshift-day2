@@ -1,0 +1,10 @@
+namespace: openshift-storage
+labels: 
+  openshift.io/cluster-monitoring: "true"
+operatorGroup: openshift-storage-operatorgroup
+operatorName: odf-operator
+subscriptionName: odf-operator
+channel: stable-4.18
+approval: Manual
+source: redhat-operators
+sourceNamespace: openshift-marketplace

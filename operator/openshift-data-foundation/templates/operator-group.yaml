@@ -1,0 +1,14 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: {{ .Values.operatorGroup }}
+  namespace: {{ .Values.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+{{- if .Values.labels }}
+  labels: 
+{{ toYaml .Values.labels | indent 4 }}
+{{- end }}
+spec:
+  targetNamespaces:
+  - {{ .Values.namespace }}

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: NMState
+version: 1.0
+description: Install & Configure NMState Operator

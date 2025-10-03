@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - resources/ingresscontroller-default.yaml
+  - resources/ingresscontroller.yaml
+
+namespace: openshift-ingress-operator
+
+patches:
+  - path: patches/ingresscontroller-default-patch.yaml
+    target:
+      kind: IngressController
+      name: default
+  - path: patches/ingresscontroller-patch.yaml
+    target:
+      kind: IngressController
+      name: base
+    options:
+      allowChangeName: true

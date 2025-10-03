@@ -1,0 +1,10 @@
+namespace: ansible-automation-platform
+labels: 
+  openshift.io/cluster-monitoring: "true"
+operatorGroup: ansible-automation-platform-operator
+operatorName: ansible-automation-platform-operator
+subscriptionName: ansible-automation-platform
+channel: stable-2.6
+approval: Manual
+source: redhat-operators
+sourceNamespace: openshift-marketplace
