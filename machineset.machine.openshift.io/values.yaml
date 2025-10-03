@@ -1,0 +1,65 @@
+clusterName: ocp-prod-x8h9t
+
+machineSets:
+  - machineSetName: compute-0
+    role: compute
+    replica: 2
+    disk: 120
+    memory: 49152
+    cpu: 8
+    vSphereNetwork: vlan600
+    vSphereDatacenter: DC0
+    vSphereDatastore: DS0
+    vSphereFolder: ocp-prod
+    vSphereCluster: OCP-PROD
+    vSphereServer: vcenter.datacenter.it
+  - machineSetName: infra-0
+    role: infra
+    replica: 3
+    disk: 120
+    memory: 49152
+    cpu: 8
+    vSphereNetwork: vlan600
+    vSphereDatacenter: DC0
+    vSphereDatastore: DS0
+    vSphereFolder: ocp-prod
+    vSphereCluster: OCP-PROD
+    vSphereServer: vcenter.datacenter.it
+    taints:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+        value: reserved
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+        value: reserved
+  - machineSetName: storage-0
+    role: storage
+    replica: 3
+    disk: 120
+    memory: 49152
+    cpu: 8
+    vSphereNetwork: vlan600
+    vSphereDatacenter: DC0
+    vSphereDatastore: DS0
+    vSphereFolder: ocp-prod
+    vSphereCluster: OCP-PROD
+    vSphereServer: vcenter.datacenter.it
+    taints:
+      - effect: NoSchedule
+        key: node.ocs.openshift.io/storage
+        value: "true"
+  - machineSetName: builder-0
+    role: builder
+    replica: 1
+    disk: 120
+    memory: 49152
+    cpu: 8
+    vSphereNetwork: vlan600
+    vSphereDatacenter: DC0
+    vSphereDatastore: DS0
+    vSphereFolder: ocp-prod
+    vSphereCluster: OCP-PROD
+    vSphereServer: vcenter.datacenter.it
+    taints:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/builder

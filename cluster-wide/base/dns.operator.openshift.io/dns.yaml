@@ -1,0 +1,7 @@
+apiVersion: operator.openshift.io/v1
+kind: DNS
+metadata:
+  name: default
+spec: {}
+
+# COPY FROM THE CLUSTER

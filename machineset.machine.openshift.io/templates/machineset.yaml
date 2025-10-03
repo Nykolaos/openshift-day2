@@ -1,0 +1,58 @@
+{{- $global := .}}
+{{- range $item := .Values.machineSets }}
+---
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: {{ $global.Values.clusterName }}-{{ $item.machineSetName }}
+  namespace: openshift-machine-api
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+  labels:
+    machine.openshift.io/cluster-api-cluster: {{ $global.Values.clusterName }}
+spec:
+  replicas: {{ $item.replica }}
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: {{ $global.Values.clusterName }}
+      machine.openshift.io/cluster-api-machineset: {{ $global.Values.clusterName }}-{{ $item.machineSetName }}
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: {{ $global.Values.clusterName }}
+        machine.openshift.io/cluster-api-machine-role: {{ $item.role }}
+        machine.openshift.io/cluster-api-machine-type: {{ $item.role }}
+        machine.openshift.io/cluster-api-machineset: {{ $global.Values.clusterName }}-{{ $item.machineSetName }}
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          diskGiB: {{ $item.disk }}
+          memoryMiB: {{ $item.memory }}
+          numCoresPerSocket: 2
+          numCPUs: {{ $item.cpu }}
+          network:
+            devices:
+              - networkName: {{ $item.vSphereNetwork}}
+          workspace:
+            datacenter: {{ $item.vSphereDatacenter }}
+            datastore: /{{ $item.vSphereDatacenter }}/datastore/{{ $item.vSphereDatastore }}
+            folder: /{{ $item.vSphereDatacenter }}/vm/{{ $item.vSphereFolder }}
+            resourcePool: /{{ $item.vSphereDatacenter }}/host/{{ $item.vSphereCluster }}/Resources
+            server: {{ $item.vSphereServer }}
+          credentialsSecret:
+            name: vsphere-cloud-credentials
+          kind: VSphereMachineProviderSpec
+          metadata:
+            creationTimestamp: null
+          snapshot: ''
+          userDataSecret:
+            name: worker-user-data
+          apiVersion: machine.openshift.io/v1beta1
+          template: {{ $global.Values.clusterName }}-rhcos-generated-region-generated-zone
+      {{- if $item.taints }}
+      taint: 
+{{ toYaml $item.taints | indent 8 }}
+      {{- end }}
+{{- end }}

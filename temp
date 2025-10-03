@@ -1,0 +1,222 @@
+---
+# Source: machineset/templates/machineset.yaml
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: ocp-prod-x8h9t-compute-0
+  namespace: openshift-machine-api
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+  labels:
+    machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+      machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-compute-0
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+        machine.openshift.io/cluster-api-machine-role: compute
+        machine.openshift.io/cluster-api-machine-type: compute
+        machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-compute-0
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          diskGiB: 120
+          memoryMiB: 49152
+          numCoresPerSocket: 2
+          numCPUs: 8
+          network:
+            devices:
+              - networkName: vlan600
+          workspace:
+            datacenter: DC0
+            datastore: /DC0/datastore/DS0
+            folder: /DC0/vm/ocp-prod
+            resourcePool: /DC0/host/OCP-PROD/Resources
+            server: vcenter.datacenter.it
+          credentialsSecret:
+            name: vsphere-cloud-credentials
+          kind: VSphereMachineProviderSpec
+          metadata:
+            creationTimestamp: null
+          snapshot: ''
+          userDataSecret:
+            name: worker-user-data
+          apiVersion: machine.openshift.io/v1beta1
+          template: ocp-prod-x8h9t-rhcos-generated-region-generated-zone
+---
+# Source: machineset/templates/machineset.yaml
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: ocp-prod-x8h9t-infra-0
+  namespace: openshift-machine-api
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+  labels:
+    machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+      machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-infra-0
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+        machine.openshift.io/cluster-api-machine-role: infra
+        machine.openshift.io/cluster-api-machine-type: infra
+        machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-infra-0
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          diskGiB: 120
+          memoryMiB: 49152
+          numCoresPerSocket: 2
+          numCPUs: 8
+          network:
+            devices:
+              - networkName: vlan600
+          workspace:
+            datacenter: DC0
+            datastore: /DC0/datastore/DS0
+            folder: /DC0/vm/ocp-prod
+            resourcePool: /DC0/host/OCP-PROD/Resources
+            server: vcenter.datacenter.it
+          credentialsSecret:
+            name: vsphere-cloud-credentials
+          kind: VSphereMachineProviderSpec
+          metadata:
+            creationTimestamp: null
+          snapshot: ''
+          userDataSecret:
+            name: worker-user-data
+          apiVersion: machine.openshift.io/v1beta1
+          template: ocp-prod-x8h9t-rhcos-generated-region-generated-zone
+      taint: 
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/infra
+          value: reserved
+        - effect: NoExecute
+          key: node-role.kubernetes.io/infra
+          value: reserved
+---
+# Source: machineset/templates/machineset.yaml
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: ocp-prod-x8h9t-storage-0
+  namespace: openshift-machine-api
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+  labels:
+    machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+      machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-storage-0
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+        machine.openshift.io/cluster-api-machine-role: storage
+        machine.openshift.io/cluster-api-machine-type: storage
+        machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-storage-0
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          diskGiB: 120
+          memoryMiB: 49152
+          numCoresPerSocket: 2
+          numCPUs: 8
+          network:
+            devices:
+              - networkName: vlan600
+          workspace:
+            datacenter: DC0
+            datastore: /DC0/datastore/DS0
+            folder: /DC0/vm/ocp-prod
+            resourcePool: /DC0/host/OCP-PROD/Resources
+            server: vcenter.datacenter.it
+          credentialsSecret:
+            name: vsphere-cloud-credentials
+          kind: VSphereMachineProviderSpec
+          metadata:
+            creationTimestamp: null
+          snapshot: ''
+          userDataSecret:
+            name: worker-user-data
+          apiVersion: machine.openshift.io/v1beta1
+          template: ocp-prod-x8h9t-rhcos-generated-region-generated-zone
+      taint: 
+        - effect: NoSchedule
+          key: node.ocs.openshift.io/storage
+          value: "true"
+---
+# Source: machineset/templates/machineset.yaml
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: ocp-prod-x8h9t-builder-0
+  namespace: openshift-machine-api
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+  labels:
+    machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+      machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-builder-0
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: ocp-prod-x8h9t
+        machine.openshift.io/cluster-api-machine-role: builder
+        machine.openshift.io/cluster-api-machine-type: builder
+        machine.openshift.io/cluster-api-machineset: ocp-prod-x8h9t-builder-0
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          diskGiB: 120
+          memoryMiB: 49152
+          numCoresPerSocket: 2
+          numCPUs: 8
+          network:
+            devices:
+              - networkName: vlan600
+          workspace:
+            datacenter: DC0
+            datastore: /DC0/datastore/DS0
+            folder: /DC0/vm/ocp-prod
+            resourcePool: /DC0/host/OCP-PROD/Resources
+            server: vcenter.datacenter.it
+          credentialsSecret:
+            name: vsphere-cloud-credentials
+          kind: VSphereMachineProviderSpec
+          metadata:
+            creationTimestamp: null
+          snapshot: ''
+          userDataSecret:
+            name: worker-user-data
+          apiVersion: machine.openshift.io/v1beta1
+          template: ocp-prod-x8h9t-rhcos-generated-region-generated-zone
+      taint: 
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/builder
